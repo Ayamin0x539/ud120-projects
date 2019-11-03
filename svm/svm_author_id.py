@@ -25,6 +25,21 @@ features_train, features_test, labels_train, labels_test = preprocess()
 #########################################################
 ### your code goes here ###
 
+from sklearn import svm
+from sklearn.metrics import accuracy_score
+from timing import time_function
+
+linear_SVM = svm.SVC(kernel='linear')
+print('Using kernel {}'.format(linear_SVM.kernel))
+
+time_function(lambda: linear_SVM.fit(features_train, labels_train), 'linear_SVM.fit()')
+
+labels_predicted = time_function(lambda: linear_SVM.predict(features_test), 'linear_SVM.predict()')
+
+accuracy = time_function(lambda: accuracy_score(labels_predicted, labels_test), 'accuracy_score()')
+
+print('Accuracy: {}'.format(accuracy))
+
 #########################################################
 
 
