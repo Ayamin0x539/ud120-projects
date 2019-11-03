@@ -41,7 +41,18 @@ labels_predicted = time_function(lambda: linear_SVM.predict(features_test), 'lin
 
 accuracy = time_function(lambda: accuracy_score(labels_predicted, labels_test), 'accuracy_score()')
 
-print('Accuracy: {}'.format(accuracy))
+print('Linear accuracy: {}'.format(accuracy))
+
+rbf_SVM = svm.SVC(kernel='rbf')
+print('Using kernel {}'.format(rbf_SVM.kernel))
+
+time_function(lambda: rbf_SVM.fit(features_train, labels_train), 'rbf_SVM.fit()')
+
+labels_predicted = time_function(lambda: rbf_SVM.predict(features_test), 'rbf_SVM.predict()')
+
+accuracy = time_function(lambda: accuracy_score(labels_predicted, labels_test), 'accuracy_score()')
+
+print('Linear accuracy: {}'.format(accuracy))
 
 #########################################################
 
